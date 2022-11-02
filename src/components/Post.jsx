@@ -1,9 +1,17 @@
 import React from 'react';
 import './Post.scss';
 
-//blocos que será repetido no feed
 class Post extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      like: false,
+    }
+  }
+
   render() {
+    const { like } = this.state;
+
     return (
       <article className="post">
         <header className="post__header">
@@ -27,11 +35,17 @@ class Post extends React.Component{
         <nav className="post__controls">
           <button 
           className="post__control"
+          onClick={ () => this.setState ({ like: !like  })}
+          
           >
-            <i className='far fa-heart' />
+            {
+              this.state.like ? <i className='fas fa-heart' /> : <i className='far fa-heart' />
+            }
           </button>
 
-          <button className="post__control">
+          <button 
+            className="post__control"
+          >
             <i className="far fa-comment"/>
             <span className="comments__counter">
               
